@@ -1,7 +1,12 @@
 {
   "name": "jworker-components",
-  "version": "0.0.0",
-  "private": true,
+  "version": "0.0.3",
+  "private": false,
+  "main": "dist/jworker-components.umd.js",
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "vite build",
