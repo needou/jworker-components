@@ -1,7 +1,7 @@
-import { defineConfig } from "vite";
+import {defineConfig} from "vite";
 import vue from "@vitejs/plugin-vue";
 import vueJsx from "@vitejs/plugin-vue-jsx";
-import { resolve } from "path";
+import {resolve} from "path";
 
 export default defineConfig({
   build: {
@@ -10,10 +10,10 @@ export default defineConfig({
       entry: {
         index: resolve(__dirname, "./src/index.js"),
       },
+      // ["es", "cjs", "umd"]
       formats: ["es"],
       name: 'JworkerComponents'
     },
-    minify: true,
     rollupOptions: {
       // 确保外部化处理那些你不想打包进库的依赖
       external: ["vue", "ant-design-vue"],
@@ -41,14 +41,5 @@ export default defineConfig({
         javascriptEnabled: true,
       },
     },
-  },
-  test: {
-    environment: "happy-dom",
-    coverage: {
-      provider: "v8",
-      enabled: true,
-      reporter: ["text", "json", "html"],
-    },
-    reporters: ["default", "html"],
-  },
+  }
 });

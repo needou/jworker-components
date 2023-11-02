@@ -10,7 +10,9 @@
     "coverage": "vitest run --coverage",
     "report": "vitest --ui"
   },
-  "keywords": ["jworker-components"],
+  "keywords": [
+    "jworker-components"
+  ],
   "author": "Starter",
   "license": "ISC",
   "files": [
@@ -19,16 +21,12 @@
   ],
   "dependencies": {
     "@vitejs/plugin-vue": "^4.4.0",
-    "@vitest/coverage-v8": "^0.34.2",
-    "@vitest/ui": "^0.34.3",
-    "@vue/test-utils": "^2.4.1",
     "area-data": "^5.0.6",
-    "dayjs": "^1.11.0",
-    "happy-dom": "^10.10.4",
-    "vitest": "^0.34.3"
+    "dayjs": "^1.11.0"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue-jsx": "^3.0.2"
+    "@vitejs/plugin-vue-jsx": "^3.0.2",
+    "vitest": "^0.34.3"
   },
   "peerDependencies": {
     "ant-design-vue": "^3.1.1",
