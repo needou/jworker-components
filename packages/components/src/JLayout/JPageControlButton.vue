@@ -127,7 +127,7 @@ const init = (newVal) => {
     }
   }
   firstValue.value = false;
-  console.log('columns',columns)
+  //console.log('columns',columns)
   tableColumns.value = columns;
 };
 
