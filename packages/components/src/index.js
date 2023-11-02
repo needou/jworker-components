@@ -1,3 +1,5 @@
+//导出组件
+import Antd from './Antd'
 import JArea from './JArea'
 import JDate from './JDate'
 import JDownload from './JDownload'
@@ -7,8 +9,12 @@ import JModal from './JModal'
 import JEmpty from './JEmpty'
 import JLayout from './JLayout'
 import JTree from './JTree'
+import JDict from './JDict'
+
+import "./style/index.less"
 
 const allComponents={
+  ...Antd,
   ...JArea,
   ...JDate,
   ...JDownload,
@@ -17,7 +23,8 @@ const allComponents={
   ...JModal,
   ...JEmpty,
   ...JLayout,
-  ...JTree
+  ...JTree,
+  ...JDict
 }
 
 export default {
@@ -26,4 +33,18 @@ export default {
       app.component(key, allComponents[key]);
     }
   }
+}
+
+export {
+  Antd,
+  JArea,
+  JDate,
+  JDownload,
+  JInput,
+  JLable,
+  JModal,
+  JEmpty,
+  JLayout,
+  JTree,
+  JDict
 }

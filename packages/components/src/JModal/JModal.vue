@@ -50,15 +50,11 @@
 </template>
 
 <script>
-import { FullscreenOutlined,FullscreenExitOutlined} from "@ant-design/icons-vue"
+
 import { getClass, getStyle ,triggerWindowResizeEvent} from '../utils/util'
 
 export default {
   name: 'JModal',
-  components:{
-    FullscreenOutlined,
-    FullscreenExitOutlined
-  },
   props: {
     title: String,
     // 可使用 .sync 修饰符

@@ -13,7 +13,7 @@
 </template>
 <script setup>
 
-import {onMounted, ref} from "vue"
+import {ref} from "vue"
 
 const emits = defineEmits(['update:value','change'])
 //定义属性

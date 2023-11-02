@@ -160,7 +160,7 @@
                     :allowClear="true"
                     :placeholder="item.placeholder"
                     v-model:value="queryParam[item.key]"
-                    :dictTypeCode="item.search.dictTypeCode??''"
+                    :dateSource="item.search.dateSource"
                     :type="item.search.selectType??'select'"
                     :multiple="item.search.multiple??false"
                     style="width: 100%"
@@ -220,7 +220,7 @@
   </div>
 </template>
 <script setup>
-import {ref, onMounted} from "vue"
+import {ref} from "vue"
 
 const emits = defineEmits(['search','reset'])
 

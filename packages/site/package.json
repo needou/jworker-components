@@ -1,22 +1,26 @@
 {
   "name": "jworker-components",
-  "version": "0.0.3",
+  "type": "module",
+  "version": "0.0.8",
   "private": false,
-  "main": "dist/jworker-components.umd.js",
+  "main": "./src/lib/index.js",
   "files": [
     "dist",
     "README.md"
   ],
+  "keywords": [],
+  "author": "Starter",
+  "license": "ISC",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {
-    "vue": "^3.3.4",
     "dayjs": "^1.11.0",
     "area-data": "^5.0.6",
-    "ant-design-vue": "^3.1.1"
+    "ant-design-vue": "^3.1.1",
+    "vue": "^3.2.30"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.4.0",

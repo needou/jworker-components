@@ -1,20 +1,20 @@
 <template>
   <div class="down-box">
-    <a :href="url" target="_blank">下载模板</a>
+    <a :href="url" target="_blank">{{ title }}</a>
   </div>
 </template>
 
-<script>
-
-export default {
-  name: "JDownload.vue",
-  props:{
-    url:{
-      type:String,
-      default:''
-    }
+<script setup>
+const props =defineProps({
+  url:{
+    type:String,
+    default:''
+  },
+  title:{
+    type:String,
+    default:'下载'
   }
-}
+})
 </script>
 
 <style lang="less" scoped>

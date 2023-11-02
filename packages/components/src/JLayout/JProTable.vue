@@ -13,15 +13,15 @@
         <a-col :xs="24" :sm="24" :md="24" :lg="12" :xl="8">
           <div class="right-action">
             <j-page-control-bar
-              :value="selectItems.length??0"
-              :show-select-info="enableSelectAll"
-              :show-column-config="enableControl">
+                :value="selectItems.length??0"
+                :show-select-info="enableSelectAll"
+                :show-column-config="enableControl">
               <j-page-control-button
-                v-model:columns="columns"
-                v-model:size="size"
-                v-model:type="type"
-                :enableType="enableType"
-                :reloadList="loadData" />
+                  v-model:columns="columns"
+                  v-model:size="size"
+                  v-model:type="type"
+                  :enableType="enableType"
+                  :reloadList="loadData" />
             </j-page-control-bar>
           </div>
 
@@ -33,14 +33,14 @@
     <div class="content-box">
       <a-spin :spinning="loading">
         <a-table
-          :scroll="{ x: 'max-content' }"
-          v-if="type=='list'"
-          :columns="columns"
-          :size="size"
-          :data-source="data"
-          :pagination="false"
-          :row-selection="enableSelectAll?rowSelection:null"
-          v-bind="$attrs"
+            :scroll="{ x: 'max-content' }"
+            v-if="type=='list'"
+            :columns="columns"
+            :size="size"
+            :data-source="data"
+            :pagination="false"
+            :row-selection="enableSelectAll?rowSelection:null"
+            v-bind="$attrs"
         >
 
           <!-- 定义 headerCell 插槽 -->
@@ -66,15 +66,15 @@
 
       <div class="j-table-page" v-if="ipage!=false">
         <a-pagination
-          :size="size"
-          :total="ipage.total"
-          :defaultPageSize="ipage.defaultSize"
-          :show-size-changer="ipage.showSizeChanger"
-          :show-quick-jumper="ipage.showQuickJumper"
-          :pageSizeOptions="ipage.pageSizeOptions"
-          @change="handlePageChange"
-          @showSizeChange="handlePageSizeChange"
-          :show-total="total => `${(ipage.current-1)*ipage.pageSize+1}-${ipage.current*ipage.pageSize}`+('共')+`${total}`+('条')"
+            :size="size"
+            :total="ipage.total"
+            :defaultPageSize="ipage.defaultSize"
+            :show-size-changer="ipage.showSizeChanger"
+            :show-quick-jumper="ipage.showQuickJumper"
+            :pageSizeOptions="ipage.pageSizeOptions"
+            @change="handlePageChange"
+            @showSizeChange="handlePageSizeChange"
+            :show-total="total => `${(ipage.current-1)*ipage.pageSize+1}-${ipage.current*ipage.pageSize}`+('共')+`${total}`+('条')"
         />
       </div>
 
@@ -82,9 +82,8 @@
 
   </div>
 </template>
-<script setup lang="ts">
-import {computed, onMounted, ref} from "vue";
-
+<script setup>
+import {ref} from "vue";
 const props = defineProps({
   //数据源
   dataSource: {
