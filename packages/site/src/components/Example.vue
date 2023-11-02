@@ -9,10 +9,8 @@ defineProps({
 
 <template>
   <div class="greetings">
-    <h1 class="green">演示</h1>
-    <div>
+   <j-empty />
 
-    </div>
   </div>
 </template>
 
