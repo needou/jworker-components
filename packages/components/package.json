@@ -1,6 +1,6 @@
 {
   "name": "jworker-components",
-  "version": "1.0.0-rc.1",
+  "version": "1.0.0",
   "type": "module",
   "description": "An extension component package based on Vue 3 and Ant Design Vue 3.",
   "main": "./src/index.js",
@@ -10,9 +10,13 @@
     "coverage": "vitest run --coverage",
     "report": "vitest --ui"
   },
-  "keywords": [],
+  "keywords": ["jworker-components"],
   "author": "Starter",
   "license": "ISC",
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "dependencies": {
     "@vitejs/plugin-vue": "^4.4.0",
     "@vitest/coverage-v8": "^0.34.2",
