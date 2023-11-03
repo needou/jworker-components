@@ -1,13 +1,4 @@
 {
-  "name": "jworker-components",
-  "type": "module",
-  "version": "0.0.8",
-  "private": false,
-  "main": "./src/lib/index.js",
-  "files": [
-    "dist",
-    "README.md"
-  ],
   "keywords": [],
   "author": "Starter",
   "license": "ISC",
