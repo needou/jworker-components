@@ -10,7 +10,7 @@ import JEmpty from './JEmpty'
 import JLayout from './JLayout'
 import JTree from './JTree'
 import JDict from './JDict'
-
+import JTag from './JTag'
 import "./style/index.less"
 
 const allComponents={
@@ -24,7 +24,8 @@ const allComponents={
   ...JEmpty,
   ...JLayout,
   ...JTree,
-  ...JDict
+  ...JDict,
+  ...JTag
 }
 
 export default {
