@@ -1,6 +1,6 @@
 <!--字典选择组件-->
 <template>
-  <a-checkbox-group :disabled="disabled" v-model:value="value" @change="changeOption">
+  <a-checkbox-group :disabled="disabled" :value="value" @change="changeOption">
     <a-checkbox
       v-for="dict in dictList"
       :key="valueType === 'dictId' ? dict.dictId : dict.dictCode"

@@ -2,27 +2,30 @@
   <div style="min-width:100px;">
     <dict-select
         v-if="type=='select'"
-        :value-type="valueType"
+        :value="modelValue"
         :multiple="multiple"
         :disabled="disabled"
         :allowClear="allowClear"
-        v-model:value="modelValue"
         :placeholder="placeholder"
-        :date-source="dateSource" />
+        :date-source="dateSource"
+        @change="handleSelectChange"
+    />
     <dict-checkbox
         v-if="type=='checkbox'"
-        :value-type="valueType"
+        :value="modelValue"
         :disabled="disabled"
-        v-model:value="modelValue"
         :placeholder="placeholder"
-        :date-source="dateSource" />
+        :date-source="dateSource"
+        @change="handleCheckChange"
+    />
     <dict-radio
         v-if="type=='radio'"
-        :value-type="valueType"
+        :value="modelValue"
         :disabled="disabled"
-        v-model:value="modelValue"
         :placeholder="placeholder"
-        :date-source="dateSource" />
+        :date-source="dateSource"
+        @change="handleRadioChange"
+    />
   </div>
 </template>
 
@@ -46,12 +49,7 @@ const props = defineProps({
   value: {
     required: true
   },
-  // 传递进来的值是字典编码还是字典id
-  valueType: {
-    type: String,
-    required: true,
-    default: 'dictCode'
-  },
+
   // 是否可以多选
   multiple: {
     type: Boolean,
@@ -96,4 +94,32 @@ const modelValue = computed({
     modelValue.value = newValue;
   },
 })
+
+/**
+ * 下拉回调
+ * @param value
+ */
+const handleSelectChange=(value)=>{
+  emits('update:value', value)
+  emits('change', value)
+}
+
+/**
+ * 多选回调
+ * @param value
+ */
+const handleCheckChange=(value)=>{
+  emits('update:value', value)
+  emits('change', value)
+}
+
+/**
+ * 单选回调
+ * @param value
+ */
+const handleRadioChange=(value)=>{
+  emits('update:value', value)
+  emits('change', value)
+}
+
 </script>

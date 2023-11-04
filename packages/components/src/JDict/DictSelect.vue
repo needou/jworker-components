@@ -1,7 +1,7 @@
 <!--字典选择组件-->
 <template>
   <!--带多选-->
-  <a-select :disabled="disabled" :allowClear="allowClear" v-model:value="value" @change="changeOption" :placeholder="placeholder" mode="multiple" v-if="multiple">
+  <a-select :disabled="disabled" :allowClear="allowClear" :value="value" @change="changeOption" :placeholder="placeholder" mode="multiple" v-if="multiple">
     <a-select-option
       v-for="dict in dictList"
       :key="valueType === 'dictId' ? dict.dictId : dict.dictCode"
@@ -11,7 +11,7 @@
     </a-select-option>
   </a-select>
   <!--不带多选-->
-  <a-select :disabled="disabled" :allowClear="allowClear" v-model:value="value" @select="selectOption" :placeholder="placeholder" v-else>
+  <a-select :disabled="disabled" :allowClear="allowClear" :value="value" @select="selectOption" :placeholder="placeholder" v-else>
     <a-select-option
       v-for="dict in dictList"
       :key="valueType === 'dictId' ? dict.dictId : dict.dictCode"

@@ -1,6 +1,6 @@
 <!--字典选择组件-->
 <template>
-  <a-radio-group :disabled="disabled" v-model:value="value" @change="selectOption">
+  <a-radio-group :disabled="disabled" :value="value" @change="selectOption">
     <a-radio
       v-for="dict in dictList"
       :key="valueType === 'dictId' ? dict.dictId : dict.dictCode"

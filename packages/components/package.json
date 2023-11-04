@@ -1,6 +1,6 @@
 {
   "name": "jworker-components",
-  "version": "1.0.6",
+  "version": "1.0.8",
   "type": "module",
   "description": "An extension component package based on Vue 3 and Ant Design Vue 3.",
   "main": "./dist/index.js",
