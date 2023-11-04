@@ -82,7 +82,7 @@ const modelValue = computed({
     if (modelValue.value && modelValue.value.indexOf(',') !== -1) {
       return modelValue.value.split(',');
     }
-    if ((modelValue.value == null || modelValue.value === '') && multiple) {
+    if ((modelValue.value == null || modelValue.value === '') && props.multiple) {
       return [];
     }
     return modelValue.value;

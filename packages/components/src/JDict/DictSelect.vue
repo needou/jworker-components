@@ -72,8 +72,8 @@ export default {
 
     onMounted(async () => {
       //渲染数据
-      if(typeof this.dateSource === 'function' ){
-        data.dictList = await this.dateSource()
+      if(typeof props.dateSource === 'function' ){
+        data.dictList = await props.dateSource()
       }
     });
 
