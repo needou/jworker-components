@@ -1,5 +1,4 @@
 //导出组件
-import Antd from './Antd'
 import JArea from './JArea'
 import JDate from './JDate'
 import JDownload from './JDownload'
@@ -14,7 +13,6 @@ import JTag from './JTag'
 import "./style/index.less"
 
 const allComponents={
-  ...Antd,
   ...JArea,
   ...JDate,
   ...JDownload,
@@ -37,7 +35,6 @@ export default {
 }
 
 export {
-  Antd,
   JArea,
   JDate,
   JDownload,

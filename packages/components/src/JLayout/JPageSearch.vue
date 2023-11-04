@@ -187,6 +187,7 @@
                     :placeholder="item.placeholder"
                     v-model:value="queryParam[item.key]"
                     @change="(value)=>{item.search.change?item.search.change(value):null}"
+                    style="width: 100%"
                   >
                   </j-range-picker>
 
