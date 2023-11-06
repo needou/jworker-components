@@ -12,17 +12,13 @@
         </a-col>
         <a-col :xs="24" :sm="24" :md="24" :lg="12" :xl="8">
           <div class="right-action">
-            <j-page-control-bar
-                :value="selectItems.length??0"
-                :show-select-info="enableSelectAll"
-                :show-column-config="enableControl">
-              <j-page-control-button
-                  v-model:columns="columns"
-                  v-model:size="size"
-                  v-model:type="type"
-                  :enableType="enableType"
-                  :reloadList="loadData" />
-            </j-page-control-bar>
+            <!--右侧控制按钮-->
+            <j-page-control-button
+                v-model:columns="columnsConfig"
+                v-model:size="configSize"
+                v-model:type="configType"
+                :enableType="enableType"
+                :reloadList="loadData" />
           </div>
 
         </a-col>
@@ -34,9 +30,9 @@
       <a-spin :spinning="loading">
         <a-table
             :scroll="{ x: 'max-content' }"
-            v-if="type=='list'"
-            :columns="columns"
-            :size="size"
+            v-if="configType=='list'"
+            :columns="columnsConfig"
+            :size="configSize"
             :data-source="data"
             :pagination="false"
             :row-selection="enableSelectAll?rowSelection:null"
@@ -53,7 +49,7 @@
           </template>
         </a-table>
 
-        <div v-if="type=='card'" class="card-box">
+        <div v-if="configType=='card'" class="card-box">
           <a-row v-if="data && data.length>0" :gutter="[10,10]">
             <a-col :xs="24" :sm="24" :md="12" :lg="8" :xl="6" v-for="item in data">
               <slot name="cardCell" :record="item"></slot>
@@ -63,27 +59,45 @@
           <j-empty v-else/>
         </div>
       </a-spin>
+      <a-row style="margin-top:20px;">
+        <a-col :span="8">
+          <div class="j-table-select-row">
+            <j-page-control-bar
+                :value="selectItems.length??0"
+                :show-select-info="enableSelectAll"
+                :show-column-config="enableControl">
+            </j-page-control-bar>
+          </div>
 
-      <div class="j-table-page" v-if="ipage!=false">
-        <a-pagination
-            :size="size"
-            :total="ipage.total"
-            :defaultPageSize="ipage.defaultSize"
-            :show-size-changer="ipage.showSizeChanger"
-            :show-quick-jumper="ipage.showQuickJumper"
-            :pageSizeOptions="ipage.pageSizeOptions"
-            @change="handlePageChange"
-            @showSizeChange="handlePageSizeChange"
-            :show-total="total => `${(ipage.current-1)*ipage.pageSize+1}-${ipage.current*ipage.pageSize}`+('共')+`${total}`+('条')"
-        />
-      </div>
+        </a-col>
+        <a-col :span="16">
+          <div class="j-table-page" v-if="ipage!=false">
+            <a-pagination
+                :size="configSize"
+                :total="ipage.total"
+                :defaultPageSize="ipage.defaultSize"
+                :show-size-changer="ipage.showSizeChanger"
+                :show-quick-jumper="ipage.showQuickJumper"
+                :pageSizeOptions="ipage.pageSizeOptions"
+                @change="handlePageChange"
+                @showSizeChange="handlePageSizeChange"
+                :show-total="total => `${(ipage.current-1)*ipage.pageSize+1}-${ipage.current*ipage.pageSize}`+('共')+`${total}`+('条')"
+            />
+          </div>
+        </a-col>
+      </a-row>
+
 
     </div>
 
   </div>
 </template>
 <script setup>
-import {ref} from "vue";
+import {ref,computed} from "vue"
+
+//定义事件
+const emits = defineEmits(['select','update:columns'])
+
 const props = defineProps({
   //数据源
   dataSource: {
@@ -122,9 +136,7 @@ const props = defineProps({
     type: [Object,Boolean],
     default: true,
   }
-});
-//定义事件
-const emits = defineEmits(['select']);
+})
 
 //默认分页
 const ipage=ref({
@@ -140,6 +152,12 @@ const ipage=ref({
   total: 0
 })
 
+//代理栏目,不能直接绑定属性
+const columnsConfig = ref(props.columns)
+//代理size,不能直接绑定属性
+const configSize = ref(props.size)
+//代理size,不能直接绑定属性
+const configType = ref(props.type)
 //数据源
 const data =ref([])
 //搜索条件
@@ -278,8 +296,14 @@ defineExpose({
   .card-box{
     width: 100%;
   }
+  .j-table-select-row{
+    height: 32px;
+    line-height: 32px;
+    text-align: left;
+  }
   .j-table-page{
-    margin-top: 10px;
+    height: 32px;
+    line-height: 32px;
     text-align: right;
   }
 
