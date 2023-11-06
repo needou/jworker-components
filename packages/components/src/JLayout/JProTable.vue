@@ -237,11 +237,14 @@ const loadData=(arg=null)=>{
     }
 
     params = Object.assign(where.value,params)
-
-    props.dataSource(params,loading.value).then((res)=>{
+    loading.value =true
+    props.dataSource(params).then((res)=>{
       data.value = res.rows
       ipage.value.total = res.totalRows
-    })
+
+    }).finally(() => {
+      loading.value = false
+    });
   }
 }
 
