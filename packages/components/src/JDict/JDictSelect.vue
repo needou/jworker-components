@@ -77,21 +77,20 @@ const emits = defineEmits( ['update:value','change'])
 
 const modelValue = computed({
   get: () => {
-    if (modelValue.value && modelValue.value.indexOf(',') !== -1) {
-      return modelValue.value.split(',');
+    if (props.value && props.value.indexOf(',') !== -1) {
+      return props.value.split(',')
     }
-    if ((modelValue.value == null || modelValue.value === '') && props.multiple) {
-      return [];
+    if ((props.value == null || props.value === '') && props.multiple) {
+      return []
     }
-    return modelValue.value;
+    return props.value
   },
   set: (newValue) => {
     if (Array.isArray(newValue)) {
       newValue = newValue.toString();
     }
-    emits('update:value', newValue);
-    emits('change', newValue);
-    modelValue.value = newValue;
+    emits('update:value', newValue)
+    emits('change', newValue)
   },
 })
 
@@ -100,6 +99,7 @@ const modelValue = computed({
  * @param value
  */
 const handleSelectChange=(value)=>{
+  console.log('change',value)
   emits('update:value', value)
   emits('change', value)
 }

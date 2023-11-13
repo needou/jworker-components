@@ -76,15 +76,26 @@ export default {
         data.dictList = await props.dateSource()
       }
     });
-
+    /**
+     * 单选
+     * @param value
+     */
     const selectOption = value => {
-      context.emit('update:value', value);
-      context.emit('change', value);
-    };
+      context.emit('update:value', value)
+      context.emit('change', value)
+    }
 
+    /**
+     * 多选
+     * @param value
+     */
     const changeOption = value => {
-      context.emit('update:value', value);
-      context.emit('change', value);
+      let result = ''
+      if(value && value.length>0){
+        result = value.join(',')
+      }
+      context.emit('update:value', result)
+      context.emit('change', result)
     };
 
     return {

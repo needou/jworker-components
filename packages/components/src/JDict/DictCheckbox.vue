@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { onMounted, reactive, toRefs } from 'vue';
+import { onMounted, reactive, toRefs } from 'vue'
 
 export default {
   name: 'DictCheckbox',
@@ -41,24 +41,32 @@ export default {
   setup(props, context) {
     const data = reactive({
       dictList: null
-    });
+    })
 
     onMounted(async () => {
       //渲染数据
       if(typeof props.dateSource === 'function' ){
         data.dictList = await props.dateSource()
       }
-    });
-
+    })
+    /**
+     * 返回结果
+     * @param value
+     */
     const changeOption = value => {
-      context.emit('update:value', value);
-      context.emit('change', value);
-    };
+      let result = ''
+      if(value && value.length>0){
+        result = value.join(',')
+      }
+
+      context.emit('update:value', result)
+      context.emit('change', result)
+    }
 
     return {
       ...toRefs(data),
       changeOption
-    };
+    }
   }
 };
 </script>
