@@ -217,7 +217,7 @@
           <a-space>
             <a-button type="primary" @click="handleSearchQuery">查询</a-button>
             <a-button @click="handleSearchReset">重置</a-button>
-            <a-button v-if="columns && columns.length>2" type="link" @click="handleExpand">更多筛选<double-right-outlined :rotate="expand?270:90"  /></a-button>
+            <a-button v-if="columns && columns.length>expandNumber" type="link" @click="handleExpand">更多筛选<double-right-outlined :rotate="expand?270:90"  /></a-button>
           </a-space>
         </a-form-item>
       </a-col>
@@ -237,6 +237,11 @@ const props = defineProps({
   labelWidth:{
     type:Number,
     default:100
+  },
+  //更多筛选隐藏数量
+  expandNumber:{
+    type:Number,
+    default:2
   }
 })
 //是否展开
