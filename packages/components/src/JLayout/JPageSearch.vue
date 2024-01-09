@@ -11,7 +11,7 @@
 
           <a-row :gutter="[20,20]">
             <!--前面扩展字段-->
-            <slot name="extendBefore" :model="queryParam"></slot>
+            <slot name="extendBefore" :model="queryParam" :expand="expand"></slot>
             <template v-for="(item,i) in columns" :key="item.key">
               <a-col
                   v-show="expand || (item.search && item.search.first)"
@@ -206,7 +206,7 @@
               </a-col>
             </template>
             <!--后面扩展字段-->
-            <slot name="extendAfter" :model="queryParam"></slot>
+            <slot name="extendAfter" :model="queryParam" :expand="expand"></slot>
           </a-row>
         </a-form>
       </a-col>
