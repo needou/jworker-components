@@ -1,5 +1,5 @@
 <template>
-  <div class="j-page-control-button">
+  <div class="j-page-control-button" v-if="enableControl">
     <a-space :size="18">
       <a-tooltip :title="('刷新')">
         <span>
@@ -87,6 +87,10 @@ const props = defineProps({
     default: "list",
   },
   enableType: {
+    type: Boolean,
+    default: true,
+  },
+  enableControl:{
     type: Boolean,
     default: true,
   },

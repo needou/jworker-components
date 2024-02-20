@@ -3,14 +3,24 @@
     <!-- 操作按钮区域 -->
     <div class="control-box">
       <a-row>
-        <a-col :xs="24" :sm="24" :md="24" :lg="12" :xl="16">
+        <!--左侧-->
+        <a-col v-if="searchInputSpan>0" :span="searchInputSpan">
           <div class="left-action">
             <a-space>
               <slot name="headerButton"></slot>
             </a-space>
           </div>
         </a-col>
-        <a-col :xs="24" :sm="24" :md="24" :lg="12" :xl="8">
+        <a-col v-else :xs="24" :sm="24" :md="24" :lg="12" :xl="16">
+          <div class="left-action">
+            <a-space>
+              <slot name="headerButton"></slot>
+            </a-space>
+          </div>
+        </a-col>
+        <!--右侧-->
+
+        <a-col v-if="searchButtonSpan>0" :span="searchButtonSpan">
           <div class="right-action">
             <!--右侧控制按钮-->
             <j-page-control-button
@@ -18,6 +28,19 @@
                 v-model:size="configSize"
                 v-model:type="configType"
                 :enableType="enableType"
+                :enableControl="enableControl"
+                :reloadList="loadData" />
+          </div>
+        </a-col>
+        <a-col v-else :xs="24" :sm="24" :md="24" :lg="12" :xl="8">
+          <div class="right-action">
+            <!--右侧控制按钮-->
+            <j-page-control-button
+                v-model:columns="columnsConfig"
+                v-model:size="configSize"
+                v-model:type="configType"
+                :enableType="enableType"
+                :enableControl="enableControl"
                 :reloadList="loadData" />
           </div>
 
@@ -60,7 +83,7 @@
         </div>
       </a-spin>
       <a-row style="margin-top:20px;">
-        <a-col :span="8">
+        <a-col v-if="pageLeftSpan>0" :span="pageLeftSpan">
           <div class="j-table-select-row">
             <j-page-control-bar
                 :value="selectItems.length??0"
@@ -68,9 +91,18 @@
                 :show-column-config="enableControl">
             </j-page-control-bar>
           </div>
-
         </a-col>
-        <a-col :span="16">
+        <a-col v-else :xs="24" :sm="24" :md="12" :lg="12" :xl="8">
+          <div class="j-table-select-row">
+            <j-page-control-bar
+                :value="selectItems.length??0"
+                :show-select-info="enableSelectAll"
+                :show-column-config="enableControl">
+            </j-page-control-bar>
+          </div>
+        </a-col>
+
+        <a-col v-if="pageRightSpan>0" :span="pageRightSpan">
           <div class="j-table-page" v-if="ipage!=false">
             <a-pagination
                 :size="configSize"
@@ -85,6 +117,22 @@
             />
           </div>
         </a-col>
+        <a-col v-else :xs="24" :sm="24" :md="12" :lg="12" :xl="16">
+          <div class="j-table-page" v-if="ipage!=false">
+            <a-pagination
+                :size="configSize"
+                :total="ipage.total"
+                :defaultPageSize="ipage.defaultSize"
+                :show-size-changer="ipage.showSizeChanger"
+                :show-quick-jumper="ipage.showQuickJumper"
+                :pageSizeOptions="ipage.pageSizeOptions"
+                @change="handlePageChange"
+                @showSizeChange="handlePageSizeChange"
+                :show-total="total => `${(ipage.current-1)*ipage.pageSize+1}-${ipage.current*ipage.pageSize}`+('共')+`${total}`+('条')"
+            />
+          </div>
+        </a-col>
+
       </a-row>
 
 
@@ -122,6 +170,22 @@ const props = defineProps({
   size:{
     type: String,
     default: 'default',
+  },
+  searchInputSpan:{
+    type: Number,
+    default: 0,
+  },
+  searchButtonSpan:{
+    type: Number,
+    default: 0,
+  },
+  pageLeftSpan:{
+    type: Number,
+    default: 0,
+  },
+  pageRightSpan:{
+    type: Number,
+    default: 0,
   },
   //是否允许列表切换
   enableType:{
