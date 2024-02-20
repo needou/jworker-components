@@ -5,7 +5,7 @@
         <a class="tip">{{ value }}</a>{{ '项' }} </span>
     </div>
     <div class="bar">
-      <template v-if="showColumnConfig">
+      <template>
         <slot></slot>
       </template>
     </div>
@@ -22,11 +22,7 @@ const props = defineProps({
   showSelectInfo: {
     type: Boolean,
     default: true,
-  },
-  showColumnConfig: {
-    type: Boolean,
-    default: true,
-  },
+  }
 });
 
 </script>

@@ -15,7 +15,7 @@
             <template v-for="(item,i) in columns" :key="item.key">
               <a-col
                   v-show="expand || (item.search && item.search.first)"
-                  :xs="24" :sm="24" :md="24" :lg="8" :xl="8"
+                  :xs="searchInputCol.xs" :sm="searchInputCol.sm" :md="searchInputCol.md" :lg="searchInputCol.lg" :xl="searchInputCol.xl"
               >
                 <a-form-item
                     :labelCol="{style:{width:`${labelWidth}px`}}"
@@ -225,7 +225,7 @@
   </div>
 </template>
 <script setup>
-import {ref} from "vue"
+import {ref,watch} from "vue"
 
 const emits = defineEmits(['search','reset'])
 
@@ -242,7 +242,19 @@ const props = defineProps({
   expandNumber:{
     type:Number,
     default:2
-  }
+  },
+  leftCol:{
+    type:Object,
+    default:null
+  },
+  rightCol:{
+    type:Object,
+    default:null
+  },
+  inputCol:{
+    type:Object,
+    default:null
+  },
 })
 //是否展开
 const expand = ref(false);
@@ -256,13 +268,21 @@ const searchLeftCol=ref({
   'lg':18,
   'xl':18
 })
-//右侧代销
+//右侧大小
 const searchRightCol=ref({
   'xs':24,
   'sm':24 ,
   'md':24,
   'lg':6,
   'xl':6
+})
+//输入框
+const searchInputCol=ref({
+  'xs':24,
+  'sm':24 ,
+  'md':24,
+  'lg':8,
+  'xl':8
 })
 
 /**
@@ -279,6 +299,25 @@ const handleSearchReset = () => {
   queryParam.value = {}
   emits('reset')
 }
+
+watch(()=>props.leftCol, (newValue, oldValue) => {
+  if(newValue){
+    searchLeftCol.value = newValue
+  }
+}, { deep: true,immediate: true  })
+
+watch(()=>props.rightCol, (newValue, oldValue) => {
+  if(newValue){
+    searchRightCol.value = newValue
+  }
+}, { deep: true,immediate: true  })
+
+watch(()=>props.inputCol, (newValue, oldValue) => {
+  if(newValue){
+    searchInputCol.value = newValue
+  }
+}, { deep: true,immediate: true  })
+
 /**
  * 展开更多
  */
